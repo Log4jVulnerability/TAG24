@@ -22,6 +22,8 @@ public final class Constants {
     public static double TURN_SCALING = 0.6;
 
     // TODO change values
-    public static int[] BUTTON_PISTONS = {{0, 1}, {2, 3}};  // TODO change these
-    public static int[] LEVEL_PISTONS = {{4, 5}};
+    public static int[] BUTTON_PISTONS = {{0, 1}, {2, 3}};
+    public static int[] LEVEL_PISTONS = {{4, 5}, {6, 7}};
+
+    public static int WINCH_ID = 1;
 }
