@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpu.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.Constants;
 
 public class Winch extends SubsystemBase {

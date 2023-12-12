@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -87,16 +85,16 @@ public class Record extends CommandBase {
     double thisLine[] = new double[20];
     
     // joysticks:
-    thisLine[0] = RobotContainer.getXbox0().getX(GenericHID.Hand.kLeft);
-    thisLine[1] = RobotContainer.getXbox0().getY(GenericHID.Hand.kLeft);
-    thisLine[2] = RobotContainer.getXbox0().getX(GenericHID.Hand.kRight);
-    thisLine[3] = RobotContainer.getXbox0().getY(GenericHID.Hand.kRight);
+    thisLine[0] = RobotContainer.getXbox0().getLeftX();
+    thisLine[1] = RobotContainer.getXbox0().getLeftY();
+    thisLine[2] = RobotContainer.getXbox0().getRightX();
+    thisLine[3] = RobotContainer.getXbox0().getRightY();
     // triggers:
-    thisLine[4] = RobotContainer.getXbox0().getTriggerAxis(GenericHID.Hand.kLeft);
-    thisLine[5] = RobotContainer.getXbox0().getTriggerAxis(GenericHID.Hand.kRight);
+    thisLine[4] = RobotContainer.getXbox0().getLeftTriggerAxis();
+    thisLine[5] = RobotContainer.getXbox0().getRightTriggerAxis();
     // bumpers:
-    thisLine[6] = this.recordWhileHeld(6, RobotContainer.getXbox0().getBumper(GenericHID.Hand.kLeft));
-    thisLine[7] = this.recordWhileHeld(7, RobotContainer.getXbox0().getBumper(GenericHID.Hand.kRight));
+    thisLine[6] = this.recordWhileHeld(6, RobotContainer.getXbox0().getLeftBumper());
+    thisLine[7] = this.recordWhileHeld(7, RobotContainer.getXbox0().getRightBumper());
     // coloured buttons:
     thisLine[8] = this.recordWhileHeld(8, RobotContainer.getXbox0().getXButton());  // X
     thisLine[9] = this.recordWhileHeld(9, RobotContainer.getXbox0().getYButton());  // Y
@@ -106,13 +104,13 @@ public class Record extends CommandBase {
     thisLine[12] = this.recordWhileHeld(12, RobotContainer.getXbox0().getStartButton());  // Start
     thisLine[13] = this.recordWhileHeld(13, RobotContainer.getXbox0().getBackButton());  // Back
     // D Pad Buttons (4 cardinal directions)
-    thisLine[14] = this.recordWhileHeld(14, (RobotContainer.getXbox0().getPOV() == 0  ? true : false));  // Up
-    thisLine[15] = this.recordWhileHeld(15, (RobotContainer.getXbox0().getPOV() == 180  ? true : false));  // Down
-    thisLine[16] = this.recordWhileHeld(16, (RobotContainer.getXbox0().getPOV() == 270  ? true : false));  // Left
-    thisLine[17] = this.recordWhileHeld(17, (RobotContainer.getXbox0().getPOV() == 90  ? true : false));  // Right
+    thisLine[14] = this.recordWhileHeld(14, (RobotContainer.getXbox0().getPOV() == 0));  // Up
+    thisLine[15] = this.recordWhileHeld(15, (RobotContainer.getXbox0().getPOV() == 180));  // Down
+    thisLine[16] = this.recordWhileHeld(16, (RobotContainer.getXbox0().getPOV() == 270));  // Left
+    thisLine[17] = this.recordWhileHeld(17, (RobotContainer.getXbox0().getPOV() == 90));  // Right
     // Joystick button clickers
-    thisLine[18] = this.recordWhileHeld(18, RobotContainer.getXbox0().getStickButtonPressed(Hand.kLeft));  // Left Click
-    thisLine[19] = this.recordWhileHeld(19, RobotContainer.getXbox0().getStickButtonPressed(Hand.kRight));  // Right Click
+    thisLine[18] = this.recordWhileHeld(18, RobotContainer.getXbox0().getLeftStickButtonPressed());  // Left Click
+    thisLine[19] = this.recordWhileHeld(19, RobotContainer.getXbox0().getRightStickButtonPressed());  // Right Click
 
     lastLine = thisLine.clone();
     return thisLine;

@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.recordplayback.RecordPlaybackSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Drivebase;
@@ -25,8 +27,8 @@ public class RobotContainer {
     public final static XboxController xbox1 = new XboxController(1);
     public final static Drivebase m_drivebase = new Drivebase();
     public final static Winch m_winch = new Winch();
-    public final static PistonGroup m_pistons0 = new Pistons(Constants.BUTTON_PISTONS);
-    public final static PistonGroup m_pistons1 = new Pistons(Constants.LEVEL_PISTONS);
+    public final static PistonGroup m_pistons0 = new PistonGroup(Constants.BUTTON_PISTONS);
+    public final static PistonGroup m_pistons1 = new PistonGroup(Constants.LEVEL_PISTONS);
   
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -35,7 +37,7 @@ public class RobotContainer {
         ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_drivebase);
         WinchController m_winchController = new WinchController(m_winch);
         m_drivebase.setDefaultCommand(m_arcadeDrive);
-        m_winch.setDefualtCommand(m_winchController);
+        m_winch.setDefaultCommand(m_winchController);
     }
 
     public static XboxController getXbox0() {return xbox0;}
@@ -53,9 +55,9 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        xbox1.x().onTrue(new InstantCommand(m_pistons0::out));
-        xbox1.a().onTrue(new InstantCommand(m_pistons0::in));
-        xbox1.y().onTrue(new InstantCommand(m_pistons1::out));
-        xbox1.b().onTrue(new InstantCommand(m_pistons1::in));
+        new Trigger(xbox1::getXButton).onTrue(new InstantCommand(m_pistons0::out));
+        new Trigger(xbox1::getAButton).onTrue(new InstantCommand(m_pistons0::in));
+        new Trigger(xbox1::getYButton).onTrue(new InstantCommand(m_pistons1::out));
+        new Trigger(xbox1::getBButton).onTrue(new InstantCommand(m_pistons1::in));
     }
 }
