@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class PistonGroup extends SubsystemBase {
-		private DoubleSolenoid[] pistons;
+		final DoubleSolenoid[] pistons;
 
 		public PistonGroup(int[][] pistons) {
 				this.pistons = new DoubleSolenoid[pistons.length];

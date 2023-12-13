@@ -5,28 +5,29 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 
 public class Drivebase extends SubsystemBase {
-    final WPI_TalonSRX frontLeftMotor;
-    final WPI_TalonSRX rearLeftMotor;
-    final WPI_TalonSRX frontRightMotor;
-    final WPI_TalonSRX rearRightMotor;
+    final CANSparkMax frontLeftMotor;
+    final CANSparkMax rearLeftMotor;
+    final CANSparkMax frontRightMotor;
+    final CANSparkMax rearRightMotor;
     final MotorControllerGroup m_left;
     final MotorControllerGroup m_right;
     final DifferentialDrive m_myRobot;
 
     /** Creates a new Drivebase. */
     public Drivebase() {
-        frontLeftMotor = new WPI_TalonSRX(Constants.frontLeftID);
-        rearLeftMotor = new WPI_TalonSRX(Constants.rearLeftID);
+        frontLeftMotor = new CANSparkMax(Constants.frontLeftID, MotorType.kBrushless);
+        rearLeftMotor = new CANSparkMax(Constants.rearLeftID, MotorType.kBrushless);
         m_left = new MotorControllerGroup(frontLeftMotor, rearLeftMotor);
 
-        frontRightMotor = new WPI_TalonSRX(Constants.frontRightID);
-        rearRightMotor = new WPI_TalonSRX(Constants.rearRightID);
+        frontRightMotor = new CANSparkMax(Constants.frontRightID, MotorType.kBrushless);
+        rearRightMotor = new CANSparkMax(Constants.rearRightID, MotorType.kBrushless);
         frontRightMotor.setInverted(true);
         rearRightMotor.setInverted(true);
         m_right = new MotorControllerGroup(frontRightMotor, rearRightMotor);

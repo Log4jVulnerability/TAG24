@@ -13,10 +13,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int frontLeftID = 12;
-    public static int rearLeftID = 14;
-    public static int frontRightID = 13;
-    public static int rearRightID = 15;
+    public static int frontLeftID = 13;
+    public static int rearLeftID = 11;
+    public static int frontRightID = 14;
+    public static int rearRightID = 12;
 
     public static double SPEED_SCALING = 0.8;
     public static double TURN_SCALING = 0.6;
