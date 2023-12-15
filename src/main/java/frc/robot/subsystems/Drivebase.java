@@ -25,11 +25,10 @@ public class Drivebase extends SubsystemBase {
         frontLeftMotor = new CANSparkMax(Constants.frontLeftID, MotorType.kBrushless);
         rearLeftMotor = new CANSparkMax(Constants.rearLeftID, MotorType.kBrushless);
         m_left = new MotorControllerGroup(frontLeftMotor, rearLeftMotor);
+        m_left.setInverted(true);
 
         frontRightMotor = new CANSparkMax(Constants.frontRightID, MotorType.kBrushless);
         rearRightMotor = new CANSparkMax(Constants.rearRightID, MotorType.kBrushless);
-        frontRightMotor.setInverted(true);
-        rearRightMotor.setInverted(true);
         m_right = new MotorControllerGroup(frontRightMotor, rearRightMotor);
 
         m_myRobot = new DifferentialDrive(m_left, m_right);

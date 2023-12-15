@@ -10,7 +10,7 @@ import frc.robot.recordplayback.RecordPlaybackSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Winch;
-import frc.robot.subsystems.PistonGroup;
+import frc.robot.subsystems.ButtonPiston;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.WinchController;
 
@@ -27,17 +27,14 @@ public class RobotContainer {
 //    public final static XboxController xbox1 = new XboxController(1);
     public final static Drivebase m_drivebase = new Drivebase();
     public final static Winch m_winch = new Winch();
-    public final static PistonGroup m_pistons0 = new PistonGroup(Constants.BUTTON_PISTONS);
-    public final static PistonGroup m_pistons1 = new PistonGroup(Constants.LEVEL_PISTONS);
+    public final static ButtonPiston m_buttonpistons = new ButtonPiston();
   
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Configure the button bindings
         configureButtonBindings();
         ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_drivebase);
-        WinchController m_winchController = new WinchController(m_winch);
         m_drivebase.setDefaultCommand(m_arcadeDrive);
-        m_winch.setDefaultCommand(m_winchController);
     }
 
     public static XboxController getXbox0() {return xbox0;}
@@ -45,8 +42,7 @@ public class RobotContainer {
     public static double getDriveRightTrigger() {return xbox0.getRightTriggerAxis();}
     public static double getDriveLeftTrigger() {return xbox0.getLeftTriggerAxis();}
     public static double getDriveSteer() {return xbox0.getLeftX();}
-    public static double getCopilotRightTrigger() {return xbox0.getLeftY();}
-    public static double getCopilotLeftTrigger() {return 0.0 * xbox0.getLeftTriggerAxis();}
+    public static boolean getCopilotStart() {return xbox0.getStartButton();}
 
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
@@ -55,9 +51,9 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        new Trigger(xbox0::getXButton).onTrue(new InstantCommand(m_pistons0::out));
-        new Trigger(xbox0::getAButton).onTrue(new InstantCommand(m_pistons0::in));
-        new Trigger(xbox0::getYButton).onTrue(new InstantCommand(m_pistons1::out));
-        new Trigger(xbox0::getBButton).onTrue(new InstantCommand(m_pistons1::in));
+        new Trigger(xbox0::getXButton).onTrue(new InstantCommand(m_buttonpistons::out));
+        new Trigger(xbox0::getAButton).onTrue(new InstantCommand(m_buttonpistons::in));
+        new Trigger(xbox0::getStartButton).whileTrue(new WinchController(m_winch, false));
+        new Trigger(xbox0::getBackButton).whileTrue(new WinchController(m_winch, true));
     }
 }

@@ -13,17 +13,18 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int frontLeftID = 13;
-    public static int rearLeftID = 11;
-    public static int frontRightID = 14;
-    public static int rearRightID = 12;
+    public static int frontLeftID = 12;
+    public static int rearLeftID = 14;
+    public static int frontRightID = 11;
+    public static int rearRightID = 13;
 
     public static double SPEED_SCALING = 0.8;
     public static double TURN_SCALING = 0.6;
 
     // TODO change values
-    public static int[][] BUTTON_PISTONS = {{0, 1}, {2, 3}};
-    public static int[][] LEVEL_PISTONS = {{4, 5}, {6, 7}};
+    public static int BUTTON_PISTON_IN = 0;
+    public static int BUTTON_PISTON_OUT = 1;
 
-    public static int WINCH_ID = 0;
+    public static int WINCH_ID = 15;
+    public static final double WINCH_SPEED = 1.0;
 }

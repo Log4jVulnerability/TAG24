@@ -1,14 +1,15 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.Constants;
 
 public class Winch extends SubsystemBase {
-    final Spark winchMotor;
-    
-    public Winch() {winchMotor = new Spark(Constants.WINCH_ID);}
-    public void run(double speed) {winchMotor.set(speed);}
+    final CANSparkMax winchMotor;
+
+    public Winch() {winchMotor = new CANSparkMax(Constants.WINCH_ID, MotorType.kBrushed);}
+    public void run(boolean reverse) {winchMotor.set((reverse ? -1 : 1) * Constants.WINCH_SPEED);}
     public void stop() {winchMotor.set(0);}
     
     @Override
