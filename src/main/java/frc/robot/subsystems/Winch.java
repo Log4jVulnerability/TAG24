@@ -9,7 +9,7 @@ public class Winch extends SubsystemBase {
     final CANSparkMax winchMotor;
 
     public Winch() {winchMotor = new CANSparkMax(Constants.WINCH_ID, MotorType.kBrushed);}
-    public void run(boolean reverse) {winchMotor.set((reverse ? -1 : 1) * Constants.WINCH_SPEED);}
+    public void run(boolean forward) {winchMotor.set((forward ? -1 : 1) * Constants.WINCH_SPEED);}
     public void stop() {winchMotor.set(0);}
     
     @Override

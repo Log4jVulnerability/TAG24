@@ -22,8 +22,8 @@ public final class Constants {
     public static double TURN_SCALING = 0.6;
 
     // TODO change values
-    public static int BUTTON_PISTON_IN = 0;
-    public static int BUTTON_PISTON_OUT = 1;
+    public static int BUTTON_PISTON_IN = 1;
+    public static int BUTTON_PISTON_OUT = 0;
 
     public static int WINCH_ID = 15;
     public static final double WINCH_SPEED = 1.0;

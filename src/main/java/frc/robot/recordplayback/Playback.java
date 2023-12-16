@@ -136,6 +136,8 @@ public class Playback extends CommandBase {
 
     // END RUN LINE
 
+    RobotContainer.m_drivebase.drive(thisLine[5] - thisLine[4], thisLine[0]);
+
     currentLine ++;
     if (currentLine >= allLines.size() - 1) {
       isFinished = true;
